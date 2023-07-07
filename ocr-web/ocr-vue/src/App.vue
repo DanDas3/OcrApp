@@ -11,14 +11,15 @@
           width="40"
         />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <!--        <v-img-->
+        <!--          alt="Vuetify Name"-->
+        <!--          class="shrink mt-1 hidden-sm-and-down"-->
+        <!--          contain-->
+        <!--          min-width="100"-->
+        <!--          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"-->
+        <!--          width="100"-->
+        <!--        />-->
+        <span>Ocr App</span>
       </div>
 
       <v-spacer></v-spacer>
@@ -28,26 +29,26 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">v0.1</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <OcrApp />
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import OcrApp from "./components/OcrApp.vue";
 
 export default Vue.extend({
   name: "App",
 
   components: {
-    HelloWorld,
+    OcrApp,
   },
 
   data: () => ({
