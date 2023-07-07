@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrApi", "OcrApi\OcrApi.csproj", "{B4826317-663B-4CA7-9374-2243EEA52629}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrProcess", "OcrProcess\OcrProcess.csproj", "{97D71823-BFFD-49BF-9A06-A83046F75FCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrProcessTest", "OcrProcessTest\OcrProcessTest.csproj", "{7F4C5B57-38FB-46E3-A5A6-10BA4398454C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4826317-663B-4CA7-9374-2243EEA52629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4826317-663B-4CA7-9374-2243EEA52629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4826317-663B-4CA7-9374-2243EEA52629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4826317-663B-4CA7-9374-2243EEA52629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D71823-BFFD-49BF-9A06-A83046F75FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D71823-BFFD-49BF-9A06-A83046F75FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D71823-BFFD-49BF-9A06-A83046F75FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D71823-BFFD-49BF-9A06-A83046F75FCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F4C5B57-38FB-46E3-A5A6-10BA4398454C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4C5B57-38FB-46E3-A5A6-10BA4398454C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4C5B57-38FB-46E3-A5A6-10BA4398454C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F4C5B57-38FB-46E3-A5A6-10BA4398454C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08F7AE92-8B5F-4C22-8CDD-B8EBDE2EE47C}
+	EndGlobalSection
+EndGlobal
