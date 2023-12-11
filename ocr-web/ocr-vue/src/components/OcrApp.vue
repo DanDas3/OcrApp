@@ -69,7 +69,6 @@ export default Vue.extend({
         })
         .then((response) => {
           console.log("enviado com sucesso");
-          console.log(response.data);
           this.textProcessed = response.data;
           console.log(this.textProcessed);
         })
