@@ -13,23 +13,30 @@ namespace OcrApi.Controllers
         [HttpPost]
         //[ValidateAntiForgeryToken]
         [ActionName(nameof(ProcessImage))]
-        public async Task<ActionResult<string>> ProcessImage(IFormFile image)
+        public async Task<ActionResult<string>> ProcessImage(List<IFormFile> images)
         {
             try
             {
-
+                if(images == null || images.Count == 0)
+                {
+                    return BadRequest("Nenhuma imagem foi enviada.");
+                }
+                int i = 0;
                 OcrProcessor ocr = new OcrProcessor();
                 string response = string.Empty;
-                using (var memoryStream = new MemoryStream())
+                foreach (var image in images)
                 {
-                    await image.CopyToAsync(memoryStream);
-
-                    using (var img = Pix.LoadFromMemory(memoryStream.ToArray()))
+                    using (var memoryStream = new MemoryStream())
                     {
-                        response = ocr.Process(img);
+                        await image.CopyToAsync(memoryStream);
+
+                        using (var img = Pix.LoadFromMemory(memoryStream.ToArray()))
+                        {
+                            response += $"Pagina: {++i}\n\n{(ocr.Process(img))}\n\n";
+                        }
                     }
-                    return Ok(response);
                 }
+                return Ok(response);
             }
             catch
             {
