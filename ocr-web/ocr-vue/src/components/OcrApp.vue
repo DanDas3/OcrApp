@@ -14,8 +14,8 @@
         <h2 class="headline font-weight-bold mb-3">
           Detecção de texto em imagens
         </h2>
-        <v-card-text
-          >Use este serviço para extrair texto de imagens
+        <v-card-text>
+          Use este serviço para extrair texto de imagens
           <br />
           Não suporta letra cursiva
         </v-card-text>
@@ -23,12 +23,13 @@
           <v-file-input
             @change="handleFileSelected"
             label="Clique aqui para escolher uma imagem"
+            multiple
           ></v-file-input>
           <v-btn @click="handleUpload" color="primary">Enviar</v-btn>
         </v-row>
-        <v-row v-if="textProcessed != ''">
+        <a ref="downloadLink" :style="{ display: 'none' }"></a>
+        <v-row v-if="textProcessed !== ''">
           <v-col>
-            <!--            <v-card-text>{{ textProcessed }}</v-card-text>-->
             <v-textarea :value="textProcessed" readonly></v-textarea>
           </v-col>
         </v-row>
@@ -45,36 +46,49 @@ export default Vue.extend({
   name: "OcrApp",
 
   data: () => ({
-    selectedImage: null as File | null,
-    textProcessed: "",
+    selectedImages: [] as File[],
+    textProcessed: null as any,
   }),
   methods: {
-    handleFileSelected(file: File) {
-      this.selectedImage = file;
+    handleFileSelected(files: FileList) {
+      // Convertendo a lista de arquivos para um array
+      this.selectedImages = Array.from(files);
     },
 
     handleUpload() {
-      if (!this.selectedImage) {
+      if (!this.selectedImages.length) {
         return;
       }
 
       let formData = new FormData();
-      formData.append("image", this.selectedImage);
-      console.log("carregado");
-      return http
-        .post("/Ocr", formData, {
+      this.selectedImages.forEach((file, index) => {
+        formData.append(`images`, file); // Certifique-se de usar o mesmo nome que o esperado no controlador
+      });
+
+      http
+        .post("/Ocr/ProcessImage", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          responseType: "blob",
         })
         .then((response) => {
-          console.log("enviado com sucesso");
-          this.textProcessed = response.data;
-          console.log(this.textProcessed);
+          const blob = new Blob([response.data], { type: "application/zip" });
+          const url = window.URL.createObjectURL(blob);
+
+          const downloadLink = this.$refs.downloadLink as HTMLAnchorElement;
+          downloadLink.href = url;
+          downloadLink.download = "Texts.zip";
+
+          // Simula um clique no link para iniciar o download
+          downloadLink.click();
+
+          // Limpa o objeto URL
+          window.URL.revokeObjectURL(url);
+          // this.textProcessed = response.data;
         })
         .catch((error) => {
-          console.log("Erro no envio");
-          console.log(`Error: ${error.message}`);
+          console.error(`Error: ${error.message}`);
         });
     },
   },
